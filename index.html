@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Pranav — ECE Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#0f2550;--navy2:#1a3a6e;--navy3:#1e4080;
+  --blue:#2563eb;--blue2:#3b82f6;--blue3:#dbeafe;
+  --white:#ffffff;--off:#f8fafc;--paper:#f1f5f9;
+  --ink:#0f172a;--ink2:#1e293b;--muted:#64748b;--dim:#94a3b8;
+  --border:#e2e8f0;--border2:#bfdbfe;
+  --shadow:rgba(15,37,80,0.08);--shadow2:rgba(37,99,235,0.15);
+}
+body{background:var(--white);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;height:64px;box-shadow:0 1px 12px var(--shadow)}
+.nav-logo{font-size:18px;font-weight:800;text-decoration:none;color:var(--navy);letter-spacing:-0.5px}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:36px;margin-left:auto;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;letter-spacing:0.2px;transition:color 0.2s;padding-bottom:2px;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;margin-left:28px;transition:all 0.2s;box-shadow:0 2px 8px var(--shadow2)}
+.nav-cta:hover{background:var(--navy);transform:translateY(-1px)}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding:100px 60px 60px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 50%,var(--navy3) 100%);position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px}
+.hero-shape{position:absolute;bottom:-60px;right:-60px;width:480px;height:480px;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
+.hero-shape2{position:absolute;bottom:-120px;right:-120px;width:640px;height:640px;border-radius:50%;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04)}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:24px;font-family:'JetBrains Mono',monospace}
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,0.6)}
+h1{font-size:clamp(42px,5vw,64px);font-weight:800;line-height:1.06;letter-spacing:-2px;color:#fff;margin-bottom:20px}
+h1 em{font-style:normal;color:#93c5fd}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:36px;max-width:460px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.btn-white{background:#fff;color:var(--navy);padding:13px 28px;border-radius:9px;text-decoration:none;font-weight:700;font-size:14px;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-ghost{background:transparent;color:#fff;padding:13px 28px;border-radius:9px;text-decoration:none;font-weight:600;font-size:14px;border:1.5px solid rgba(255,255,255,0.3);transition:all 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.5)}
+.hero-socials{display:flex;gap:10px;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:7px;text-decoration:none;color:rgba(255,255,255,0.7);font-size:12px;font-weight:500;padding:8px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;transition:all 0.2s}
+.social-btn:hover{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3)}
+.social-btn svg{width:14px;height:14px}
+.hero-cards{display:flex;flex-direction:column;gap:12px}
+.hero-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:20px 24px;backdrop-filter:blur(10px)}
+.hc-label{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-bottom:6px}
+.hc-val{font-size:14px;font-weight:600;color:#fff}
+.hc-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:3px}
+.hc-bar{width:36px;height:2px;border-radius:1px;background:linear-gradient(90deg,#93c5fd,#60a5fa);margin-bottom:10px}
+
+/* SECTIONS */
+section{padding:88px 60px}
+.section-inner{max-width:1100px;margin:0 auto}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--blue);border-radius:1px}
+.sec-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1px;color:var(--ink);margin-bottom:14px;line-height:1.1}
+.sec-title span{color:var(--blue)}
+.sec-line{width:40px;height:3px;background:var(--blue);border-radius:2px;margin-bottom:48px}
+
+/* ABOUT */
+#about{background:var(--off)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.about-text p{font-size:15px;color:var(--ink2);line-height:1.85;margin-bottom:16px}
+.about-info{margin-top:24px;display:flex;flex-direction:column;gap:14px}
+.ai-row{display:flex;gap:14px;align-items:flex-start}
+.ai-icon{width:36px;height:36px;border-radius:10px;background:var(--blue3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ai-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-family:'JetBrains Mono',monospace}
+.ai-val{font-size:14px;color:var(--ink);font-weight:500}
+.about-right{display:flex;flex-direction:column;gap:14px}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px var(--shadow);transition:all 0.3s}
+.stat-card:hover{border-color:var(--border2);box-shadow:0 8px 24px var(--shadow2);transform:translateY(-2px)}
+.stat-num{font-size:38px;font-weight:800;color:var(--blue);line-height:1;font-family:'Inter',sans-serif}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* SKILLS */
+#skills{background:var(--white)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.skill-card{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.3s}
+.skill-card:hover{border-color:var(--border2);box-shadow:0 6px 20px var(--shadow2);transform:translateY(-2px)}
+.sk-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sk-icon{width:28px;height:28px;border-radius:7px;background:var(--blue3);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sk-tags{display:flex;flex-wrap:wrap;gap:7px}
+.stag{background:var(--white);border:1px solid var(--border);color:var(--ink2);padding:4px 11px;border-radius:6px;font-size:11px;font-weight:500;transition:all 0.2s}
+.stag:hover{background:var(--blue3);border-color:var(--border2);color:var(--blue)}
+
+/* EXPERIENCE */
+#experience{background:var(--off)}
+.exp-wrap{display:flex;flex-direction:column;gap:0}
+.exp-item{display:grid;grid-template-columns:180px 1fr;position:relative}
+.exp-line{position:absolute;left:179px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue) 0%,var(--border) 100%)}
+.exp-left{padding:28px 28px 28px 0;text-align:right}
+.exp-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:600}
+.exp-type{display:inline-block;background:var(--blue3);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:600;margin-top:5px;font-family:'JetBrains Mono',monospace}
+.exp-loc{font-size:11px;color:var(--dim);margin-top:4px}
+.exp-right{padding:28px 0 28px 40px;position:relative}
+.exp-dot{position:absolute;left:-9px;top:34px;width:17px;height:17px;border-radius:50%;background:var(--blue);border:3px solid var(--off);box-shadow:0 0 0 3px var(--blue3)}
+.exp-role{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.exp-company{font-size:13px;color:var(--blue);font-weight:600;margin-bottom:12px}
+.exp-badge{display:inline-block;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;border-radius:4px;padding:2px 8px;font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;margin-left:8px;vertical-align:middle}
+.exp-pts{list-style:none;display:flex;flex-direction:column;gap:7px}
+.exp-pts li{font-size:13px;color:var(--ink2);padding-left:16px;position:relative;line-height:1.65}
+.exp-pts li::before{content:'▸';position:absolute;left:0;color:var(--blue);font-size:11px;top:2px}
+
+/* PROJECTS */
+#projects{background:var(--white)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+.proj-card{background:var(--off);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+.proj-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.proj-card:hover{border-color:var(--border2);box-shadow:0 12px 32px var(--shadow2);transform:translateY(-4px)}
+.proj-card:hover::after{transform:scaleX(1)}
+.proj-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-bottom:10px}
+.proj-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:16px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.ptag{background:var(--blue3);color:var(--blue);padding:3px 10px;border-radius:5px;font-size:10px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.proj-link{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:var(--blue);font-size:13px;font-weight:600;transition:gap 0.2s}
+.proj-link:hover{gap:9px}
+
+/* EDUCATION */
+#education{background:var(--navy);padding:88px 60px}
+#education .eyebrow{color:#93c5fd}
+#education .eyebrow::before{background:#93c5fd}
+#education .sec-title{color:#fff}
+#education .sec-title span{color:#93c5fd}
+#education .sec-line{background:#93c5fd}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.edu-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:24px;backdrop-filter:blur(10px);transition:all 0.3s}
+.edu-card:hover{background:rgba(255,255,255,0.1);border-color:rgba(147,197,253,0.3)}
+.edu-deg{font-size:15px;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.4}
+.edu-school{font-size:13px;color:#93c5fd;margin-bottom:10px;font-weight:500}
+.edu-meta{display:flex;gap:16px}
+.edu-year{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4)}
+.edu-score{font-family:'JetBrains Mono',monospace;font-size:11px;color:#93c5fd;font-weight:600}
+.lang-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.lang-pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 20px;text-align:center;transition:all 0.2s}
+.lang-pill:hover{background:rgba(255,255,255,0.12)}
+.lang-name{font-size:13px;font-weight:600;color:#fff}
+.lang-level{font-size:10px;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-top:2px}
+
+/* CONTACT */
+#contact{background:var(--off)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contact-desc{font-size:15px;color:var(--ink2);line-height:1.85;margin-bottom:32px}
+.contact-list{display:flex;flex-direction:column;gap:16px}
+.c-item{display:flex;align-items:center;gap:14px}
+.c-icon{width:42px;height:42px;border-radius:11px;background:var(--blue3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-family:'JetBrains Mono',monospace}
+.c-val{font-size:14px;color:var(--ink);font-weight:500}
+.c-val a{color:var(--blue);text-decoration:none;transition:color 0.2s}
+.c-val a:hover{color:var(--navy)}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px;box-shadow:0 4px 20px var(--shadow)}
+.form-card h3{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.form-card p{font-size:13px;color:var(--muted);margin-bottom:24px}
+.fgroup{margin-bottom:16px}
+.fgroup label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.fgroup input,.fgroup textarea{width:100%;background:var(--off);border:1.5px solid var(--border);color:var(--ink);padding:11px 14px;border-radius:9px;font-family:'Inter',sans-serif;font-size:13px;transition:all 0.2s;outline:none;resize:vertical}
+.fgroup input:focus,.fgroup textarea:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--blue3)}
+.fgroup input::placeholder,.fgroup textarea::placeholder{color:var(--dim)}
+.fgroup textarea{min-height:100px}
+.f-submit{width:100%;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px var(--shadow2)}
+.f-submit:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 6px 16px var(--shadow2)}
+.f-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.f-msg{margin-top:12px;font-size:12px;text-align:center;font-family:'JetBrains Mono',monospace;min-height:18px}
+.f-msg.ok{color:#16a34a}.f-msg.err{color:#dc2626}
+
+/* FOOTER */
+footer{background:var(--navy);padding:22px 60px;display:flex;align-items:center;justify-content:space-between}
+.footer-text{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-logo{font-size:17px;font-weight:800;color:rgba(255,255,255,0.6)}
+.footer-logo span{color:#93c5fd}
+
+/* FADE */
+.fade-in{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  section{padding:56px 20px}
+  #home{padding:90px 20px 48px}
+  .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
+  .exp-item{grid-template-columns:1fr;padding-left:24px}
+  .exp-line{left:0}.exp-left{text-align:left;padding:16px 0 0}
+  .exp-right{padding:8px 0 20px 20px}
+  #education{padding:56px 20px}
+  footer{padding:18px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">A <span>Pranav</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-pattern"></div>
+  <div class="hero-shape"></div>
+  <div class="hero-shape2"></div>
+  <div class="hero-inner">
+    <div class="fade-in visible">
+      <div class="hero-badge">🟢 Open to Opportunities</div>
+      <h1>Electronics &amp;<br/><em>Software</em><br/>Engineer</h1>
+      <p class="hero-sub">ECE graduate with hands-on experience in embedded systems, chip design, and PCB development — eager to transition into software roles and contribute to innovative tech teams.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-white">View Projects →</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/pranav4444" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+        </a>
+        <a href="https://github.com/pranav442004" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub
+        </a>
+        <a href="mailto:pranavmenon281@gmail.com" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
+        </a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hc-bar"></div>
+        <div class="hc-label">Current Role</div>
+        <div class="hc-val">Trainee — Electronics Hardware</div>
+        <div class="hc-sub">Zebronics Industries Pvt. Ltd., Chennai</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-bar"></div>
+        <div class="hc-label">Education</div>
+        <div class="hc-val">B.E. Electronics &amp; Communication</div>
+        <div class="hc-sub">Grace College of Engineering · CGPA 8.22</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-bar"></div>
+        <div class="hc-label">Contact</div>
+        <div class="hc-val">+91 9342304011</div>
+        <div class="hc-sub">pranavmenon281@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="eyebrow">About Me</div>
+    <h2 class="sec-title">Who <span>I Am</span></h2>
+    <div class="sec-line"></div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I'm a 2025 Electronics &amp; Communication Engineering graduate from Grace College of Engineering, Chennai (CGPA 8.22), with hands-on internship and project experience in hardware troubleshooting, embedded systems, and IoT-based development.</p>
+        <p>I am familiar with data entry, process documentation, MS Excel, and quality verification through academic and professional exposure. As a fresher eager to break into software roles, I bring strong analytical thinking, attention to detail, and effective written communication skills.</p>
+        <p>I am a quick learner with a drive to contribute to Non-Voice Process, Data Operations, Back-Office Operations, or Technical Support roles — while actively building software projects to grow my development skills.</p>
+        <div class="about-info">
+          <div class="ai-row"><div class="ai-icon">📍</div><div><div class="ai-label">Location</div><div class="ai-val">Chennai, Tamil Nadu, India</div></div></div>
+          <div class="ai-row"><div class="ai-icon">🎓</div><div><div class="ai-label">Degree</div><div class="ai-val">B.E. ECE — Grace College of Engineering (2021–2025)</div></div></div>
+          <div class="ai-row"><div class="ai-icon">🌐</div><div><div class="ai-label">Languages</div><div class="ai-val">English · Tamil · Hindi · Malayalam</div></div></div>
+          <div class="ai-row"><div class="ai-icon">🔍</div><div><div class="ai-label">Looking For</div><div class="ai-val">Software, Data Operations, Technical Support — Fresher roles</div></div></div>
+        </div>
+      </div>
+      <div class="about-right fade-in">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-num">8.22</div><div class="stat-lbl">CGPA</div></div>
+          <div class="stat-card"><div class="stat-num">2</div><div class="stat-lbl">Internships</div></div>
+          <div class="stat-card"><div class="stat-num">6+</div><div class="stat-lbl">Projects</div></div>
+          <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Languages</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="eyebrow">What I Know</div>
+    <h2 class="sec-title">My <span>Skills</span></h2>
+    <div class="sec-line"></div>
+    <div class="skills-grid fade-in">
+      <div class="skill-card">
+        <div class="sk-title"><div class="sk-icon">📡</div>Communication Interfaces</div>
+        <div class="sk-tags"><span class="stag">Bluetooth</span><span class="stag">GSM</span><span class="stag">I2C</span><span class="stag">SPI</span><span class="stag">TCP/IP Basics</span><span class="stag">UART/RS232</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title"><div class="sk-icon">🔧</div>Hardware &amp; Electronics</div>
+        <div class="sk-tags"><span class="stag">Circuit Testing</span><span class="stag">Fault Diagnosis</span><span class="stag">Hardware Debugging</span><span class="stag">Microcontroller Programming</span><span class="stag">PCB Design (EasyEDA)</span><span class="stag">Soldering/Desoldering</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title"><div class="sk-icon">📋</div>Operations &amp; Non-Voice Support</div>
+        <div class="sk-tags"><span class="stag">Accuracy &amp; Verification</span><span class="stag">Back-Office Operations</span><span class="stag">Data Entry</span><span class="stag">Data Validation</span><span class="stag">Email &amp; Chat Support</span><span class="stag">MS Excel (Intermediate)</span><span class="stag">MS Word</span><span class="stag">Process Documentation</span><span class="stag">Record Keeping</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title"><div class="sk-icon">🤝</div>Soft Skills</div>
+        <div class="sk-tags"><span class="stag">Analytical Thinking</span><span class="stag">Attention to Detail</span><span class="stag">Customer Handling</span><span class="stag">Multitasking</span><span class="stag">Problem Solving</span><span class="stag">Quick Learner</span><span class="stag">Teamwork</span><span class="stag">Time Management</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title"><div class="sk-icon">💻</div>Technical &amp; Programming</div>
+        <div class="sk-tags"><span class="stag">C</span><span class="stag">Embedded C</span><span class="stag">Python (Basic)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="eyebrow">Work History</div>
+    <h2 class="sec-title">My <span>Experience</span></h2>
+    <div class="sec-line"></div>
+    <div class="exp-wrap fade-in">
+      <div class="exp-item">
+        <div class="exp-line"></div>
+        <div class="exp-left">
+          <div class="exp-date">2025 – Present</div>
+          <div class="exp-type">Full-time</div>
+          <div class="exp-loc">📍 Chennai</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-dot"></div>
+          <div class="exp-role">Trainee — Electronics Hardware <span class="exp-badge">Current</span></div>
+          <div class="exp-company">Zebronics Industries Pvt. Ltd.</div>
+          <ul class="exp-pts">
+            <li>Performed precision manual soldering and desoldering of SMD and through-hole components on PCBs</li>
+            <li>Assisted in basic circuit testing, fault identification, and quality verification of electronic assemblies</li>
+            <li>Gained hands-on exposure to production-level PCB manufacturing processes and hardware testing protocols</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-line"></div>
+        <div class="exp-left">
+          <div class="exp-date">Aug – Sep 2024</div>
+          <div class="exp-type">Internship</div>
+          <div class="exp-loc">📍 Chennai</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-dot"></div>
+          <div class="exp-role">Chip Design &amp; Verification Intern</div>
+          <div class="exp-company">Edveon Technologies</div>
+          <ul class="exp-pts">
+            <li>Worked on RTL design and functional verification tasks using Verilog HDL</li>
+            <li>Gained practical exposure to SoC design fundamentals and ASIC design flow concepts</li>
+            <li>Collaborated on chip-level verification projects improving understanding of digital logic</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-line"></div>
+        <div class="exp-left">
+          <div class="exp-date">Jul – Aug 2023</div>
+          <div class="exp-type">Internship</div>
+          <div class="exp-loc">📍 Thoothukudi</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-dot"></div>
+          <div class="exp-role">Embedded System Design Intern</div>
+          <div class="exp-company">Project Contest Innovations (PCI)</div>
+          <ul class="exp-pts">
+            <li>Designed and implemented embedded systems using Raspberry Pi Pico (RISC-based microcontroller)</li>
+            <li>Worked on peripheral interfacing and firmware development in C/MicroPython</li>
+            <li>Developed a Smart Dustbin project with automated waste management using sensor integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="eyebrow">What I've Built</div>
+    <h2 class="sec-title">My <span>Projects</span></h2>
+    <div class="sec-line"></div>
+    <div class="proj-grid fade-in">
+      <div class="proj-card">
+        <div class="proj-num">01 — Web App</div>
+        <div class="proj-title">DSA Visualizer</div>
+        <div class="proj-desc">Interactive web app animating 5 sorting algorithms, BFS/DFS graph traversal, and BST/AVL trees with step-by-step explanations and Big-O complexity panels.</div>
+        <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">Canvas API</span></div>
+        <a href="https://pranav442004.github.io/dsa-visualizer" target="_blank" class="proj-link">Live Demo →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">02 — Computer Vision</div>
+        <div class="proj-title">Proactive Risk Assessment CCTV</div>
+        <div class="proj-desc">Intelligent CCTV system with hand gesture recognition using OpenPose and MediaPipe for geo-location-based real-time alerts, reducing response latency significantly.</div>
+        <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">OpenPose</span><span class="ptag">MediaPipe</span><span class="ptag">CV</span></div>
+        <a href="#projects" class="proj-link">View Details →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">03 — Computer Vision</div>
+        <div class="proj-title">Vehicle Number Plate Detection</div>
+        <div class="proj-desc">Real-time license plate detection using Python and OpenCV; achieved 92% detection accuracy using image processing techniques.</div>
+        <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">OpenCV</span><span class="ptag">Image Processing</span></div>
+        <a href="#projects" class="proj-link">View Details →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">04 — IoT / Embedded</div>
+        <div class="proj-title">Smart Dustbin — Raspberry Pi Pico</div>
+        <div class="proj-desc">IoT-enabled automated waste management system using RISC-based Raspberry Pi Pico; integrated ultrasonic sensors and servo motor control via GPIO.</div>
+        <div class="proj-tags"><span class="ptag">Raspberry Pi Pico</span><span class="ptag">MicroPython</span><span class="ptag">IoT</span></div>
+        <a href="#projects" class="proj-link">View Details →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">05 — IoT / Cloud</div>
+        <div class="proj-title">Smart Water Management System</div>
+        <div class="proj-desc">Cloud-based IoT platform for remote water resource monitoring; implemented sensor interfacing and wireless data communication with real-time data logging.</div>
+        <div class="proj-tags"><span class="ptag">IoT</span><span class="ptag">Cloud</span><span class="ptag">Sensors</span><span class="ptag">Wireless</span></div>
+        <a href="#projects" class="proj-link">View Details →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">06 — Web Platform</div>
+        <div class="proj-title">Pill Camera Platform (Mendix)</div>
+        <div class="proj-desc">Online registration and data management platform for Capsule Endoscopy Insights; streamlined data entry workflows and integrated hardware system data with a web interface.</div>
+        <div class="proj-tags"><span class="ptag">Mendix</span><span class="ptag">Web Platform</span><span class="ptag">Data Management</span></div>
+        <a href="#projects" class="proj-link">View Details →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="eyebrow">Academic Background</div>
+    <h2 class="sec-title">My <span>Education</span></h2>
+    <div class="sec-line"></div>
+    <div class="edu-grid fade-in">
+      <div class="edu-card"><div class="edu-deg">B.E. — Electronics &amp; Communication Engineering</div><div class="edu-school">Grace College of Engineering</div><div class="edu-meta"><span class="edu-year">2021–2025</span><span class="edu-score">CGPA 8.22</span></div></div>
+      <div class="edu-card"><div class="edu-deg">Higher Secondary (12th) — Science</div><div class="edu-school">Rosily Matriculation Hr. Sec. School</div><div class="edu-meta"><span class="edu-year">2020–2021</span><span class="edu-score">89%</span></div></div>
+      <div class="edu-card"><div class="edu-deg">Secondary School (10th)</div><div class="edu-school">Rosily Matriculation Hr. Sec. School</div><div class="edu-meta"><span class="edu-year">2018–2019</span><span class="edu-score">88%</span></div></div>
+    </div>
+    <div class="lang-pills fade-in">
+      <div class="lang-pill"><div class="lang-name">English</div><div class="lang-level">Fluent</div></div>
+      <div class="lang-pill"><div class="lang-name">Tamil</div><div class="lang-level">Native</div></div>
+      <div class="lang-pill"><div class="lang-name">Hindi</div><div class="lang-level">Proficient</div></div>
+      <div class="lang-pill"><div class="lang-name">Malayalam</div><div class="lang-level">Basic</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="eyebrow">Get In Touch</div>
+    <h2 class="sec-title">Contact <span>Me</span></h2>
+    <div class="sec-line"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">I'm a fresher actively looking for opportunities in software development, data operations, back-office operations, and technical support roles. A quick learner with strong analytical thinking and attention to detail — eager to contribute from day one.</p>
+        <div class="contact-list">
+          <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">Phone</div><div class="c-val">+91 9342304011</div></div></div>
+          <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">Email</div><div class="c-val"><a href="mailto:pranavmenon281@gmail.com">pranavmenon281@gmail.com</a></div></div></div>
+          <div class="c-item"><div class="c-icon">💼</div><div><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/pranav4444" target="_blank">linkedin.com/in/pranav4444</a></div></div></div>
+          <div class="c-item"><div class="c-icon">🐙</div><div><div class="c-label">GitHub</div><div class="c-val"><a href="https://github.com/pranav442004" target="_blank">github.com/pranav442004</a></div></div></div>
+          <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">Location</div><div class="c-val">Chennai, Tamil Nadu, India</div></div></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Send a Message</h3>
+        <p>Fill the form — your message lands directly in my inbox.</p>
+        <div class="fgroup"><label>Your Name *</label><input type="text" id="from_name" placeholder="John Doe" required/></div>
+        <div class="fgroup"><label>Your Email *</label><input type="email" id="from_email" placeholder="john@company.com" required/></div>
+        <div class="fgroup"><label>Message *</label><textarea id="message" placeholder="Hi Pranav, I'd like to discuss an opportunity..." required></textarea></div>
+        <button class="f-submit" id="submit-btn" onclick="sendEmail()">Send Message →</button>
+        <div class="f-msg" id="form-msg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-text">© 2025 A Pranav. All rights reserved.</span>
+  <span class="footer-logo">A <span>Pranav</span></span>
+</footer>
+
+<script>
+emailjs.init('wf62Lf8GM13s2TonG');
+function sendEmail(){
+  const name=document.getElementById('from_name').value.trim();
+  const email=document.getElementById('from_email').value.trim();
+  const message=document.getElementById('message').value.trim();
+  const btn=document.getElementById('submit-btn');
+  const msg=document.getElementById('form-msg');
+  if(!name||!email||!message){msg.textContent='Please fill in all fields.';msg.className='f-msg err';return;}
+  btn.disabled=true;btn.textContent='Sending...';msg.textContent='';
+  emailjs.send('service_fn1ubqj','template_q5dclkb',{from_name:name,from_email:email,message:message,reply_to:email}).then(()=>{
+    msg.textContent='✓ Message sent! I will get back to you soon.';msg.className='f-msg ok';
+    btn.textContent='Sent ✓';
+    document.getElementById('from_name').value='';
+    document.getElementById('from_email').value='';
+    document.getElementById('message').value='';
+  }).catch((e)=>{
+    msg.textContent='Failed: '+(e.text||'Please email me directly.');msg.className='f-msg err';
+    btn.disabled=false;btn.textContent='Send Message →';
+  });
+}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
